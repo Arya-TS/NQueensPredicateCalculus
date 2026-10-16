@@ -56,3 +56,10 @@ The constraints enforce exactly one queen per row and prevent queens from sharin
 ## Project Status
 
 Academic project. Test the application in your environment before relying on its results.
+
+## Group Members
+
+- ARYA CHANDRAN
+- ARYA T S
+- GAYATHRI P S
+- AFRAH JAMALI
