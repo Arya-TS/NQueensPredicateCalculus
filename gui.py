@@ -32,18 +32,20 @@ class NQueensApp:
         self.reset_game()
         self.update_clock()
 
+    
     def build_interface(self):
         self.header = tk.Frame(self.root)
-        self.header.pack(fill="x", padx=10, pady=10)
+        self.header.pack(fill="x", padx=10, pady=(8, 4))
 
         tk.Label(
             self.header,
             text="N-QUEENS PUZZLE",
             font=("Arial", 20, "bold")
-        ).pack(pady=5)
+        ).pack(pady=4)
 
+        # Row 1: Board controls and theme
         controls = tk.Frame(self.root)
-        controls.pack(fill="x", padx=10, pady=5)
+        controls.pack(fill="x", padx=10, pady=3)
 
         tk.Label(controls, text="Board size:").pack(side="left")
 
@@ -61,66 +63,75 @@ class NQueensApp:
             controls,
             text="New Game",
             command=self.reset_game
-        ).pack(side="left", padx=5)
+        ).pack(side="left", padx=3)
 
         tk.Button(
             controls,
             text="Switch Theme",
             command=self.toggle_theme
-        ).pack(side="left", padx=5)
+        ).pack(side="left", padx=3)
 
-        modes = tk.Frame(self.root)
-        modes.pack(pady=5)
+        # Row 2: Game modes and actions
+        actions = tk.Frame(self.root)
+        actions.pack(fill="x", padx=10, pady=3)
 
         tk.Button(
-            modes,
+            actions,
             text="User Mode",
             command=lambda: self.change_mode("User")
-        ).pack(side="left", padx=5)
+        ).pack(side="left", padx=3)
 
         tk.Button(
-            modes,
+            actions,
             text="AI Mode",
             command=lambda: self.change_mode("AI")
-        ).pack(side="left", padx=5)
-
-        self.board_frame = tk.Frame(self.root)
-        self.board_frame.pack(padx=10, pady=10, expand=True)
-
-        actions = tk.Frame(self.root)
-        actions.pack(pady=5)
+        ).pack(side="left", padx=3)
 
         tk.Button(
             actions,
             text="Get Hint",
             command=self.show_hint
-        ).pack(side="left", padx=5)
+        ).pack(side="left", padx=3)
 
         tk.Button(
             actions,
             text="Solve with AI",
             command=self.solve_board
-        ).pack(side="left", padx=5)
+        ).pack(side="left", padx=3)
 
         tk.Button(
             actions,
             text="Clear Board",
             command=self.clear_board
-        ).pack(side="left", padx=5)
+        ).pack(side="left", padx=3)
+
+        # Row 3: Status and timer
+        info = tk.Frame(self.root)
+        info.pack(fill="x", padx=10, pady=4)
 
         self.status = tk.Label(
-            self.root,
+            info,
             text="Click a square to place a queen.",
-            font=("Arial", 11)
+            font=("Arial", 10),
+            anchor="w"
         )
-        self.status.pack(pady=5)
+        self.status.pack(side="left", fill="x", expand=True)
 
         self.timer_label = tk.Label(
-            self.root,
+            info,
             text="Time: 00:00",
-            font=("Arial", 12, "bold")
+            font=("Arial", 11, "bold")
         )
-        self.timer_label.pack(pady=5)
+        self.timer_label.pack(side="right", padx=5)
+
+        # Chessboard appears below all controls
+        self.board_frame = tk.Frame(self.root)
+        self.board_frame.pack(
+            padx=10,
+            pady=5,
+            expand=True
+        )
+
 
     def reset_game(self):
         try:
